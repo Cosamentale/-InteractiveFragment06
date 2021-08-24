@@ -399,7 +399,7 @@ canvas.addEventListener('mousedown', e => {
     let posX = scaleByPixelRatio(e.offsetX);
     let posY = scaleByPixelRatio(e.offsetY);
     //let pointer = pointers.find(p => p.id == -1);
-    test = 1;
+  test = 1;
     let pointer = pointers[0];
     if (pointer == null)
         pointer = new pointerPrototype();
@@ -407,6 +407,7 @@ canvas.addEventListener('mousedown', e => {
 });
 
 canvas.addEventListener('mousemove', e => {
+    test = 1;
     let pointer = pointers[0];
     if (!pointer.down) return;
     let posX = scaleByPixelRatio(e.offsetX);
@@ -416,7 +417,7 @@ canvas.addEventListener('mousemove', e => {
 
 window.addEventListener('mouseup', () => {
  //navigator.vibrate(50);
- test = 0;
+// test = 0;
     updatePointerUpData(pointers[0]);
 });
 
@@ -437,7 +438,6 @@ function fract(tt) { return tt - Math.floor(tt); }
 canvas.addEventListener('touchmove', e => {
   //navigator.vibrate(10);
     e.preventDefault();
-
     const touches = e.targetTouches;
   //  for (let i = 0; i < touches.length; i++) {
         //let pointer = pointers[i + 1];
@@ -446,6 +446,7 @@ canvas.addEventListener('touchmove', e => {
         let posX = scaleByPixelRatio(touches[0].pageX);
         let posY = scaleByPixelRatio(touches[0].pageY);
         updatePointerMoveData(pointer, posX, posY);
+          test = 1;
         if(fract(PosX*5.)>0.9){
           navigator.vibrate(10);
         }
