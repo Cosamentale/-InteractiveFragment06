@@ -400,7 +400,7 @@ canvas.addEventListener('mousedown', e => {
     let posX = scaleByPixelRatio(e.offsetX);
     let posY = scaleByPixelRatio(e.offsetY);
     //let pointer = pointers.find(p => p.id == -1);
-
+  test = 1;
     let pointer = pointers[0];
     if (pointer == null)
         pointer = new pointerPrototype();
@@ -454,7 +454,7 @@ canvas.addEventListener('touchmove', e => {
 
 window.addEventListener('touchend', e => {
   navigator.vibrate(50);
-
+  test = 0;
     const touches = e.changedTouches;
   //  for (let i = 0; i < touches.length; i++)
   //  {
