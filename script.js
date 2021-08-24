@@ -364,7 +364,7 @@ function update () {
     lastUpdateTime = now;
     return dt;
 }*/
-var test = 0;
+
 function resizeCanvas () {
     let width = scaleByPixelRatio(canvas.clientWidth);
     let height = scaleByPixelRatio(canvas.clientHeight);
@@ -394,12 +394,13 @@ function drawDisplay (target) {
     blit(target);
 }
 
-
+var test = 0;
 canvas.addEventListener('mousedown', e => {
+
     let posX = scaleByPixelRatio(e.offsetX);
     let posY = scaleByPixelRatio(e.offsetY);
     //let pointer = pointers.find(p => p.id == -1);
-  test = 1;
+
     let pointer = pointers[0];
     if (pointer == null)
         pointer = new pointerPrototype();
@@ -407,17 +408,18 @@ canvas.addEventListener('mousedown', e => {
 });
 
 canvas.addEventListener('mousemove', e => {
-    test = 1;
+
     let pointer = pointers[0];
-    if (!pointer.down) return;
+    if (!pointer.down) {return;}
     let posX = scaleByPixelRatio(e.offsetX);
     let posY = scaleByPixelRatio(e.offsetY);
     updatePointerMoveData(pointer, posX, posY);
+    test = 1;
 });
 
 window.addEventListener('mouseup', () => {
  //navigator.vibrate(50);
-// test = 0;
+  test = 0;
     updatePointerUpData(pointers[0]);
 });
 
@@ -432,6 +434,7 @@ canvas.addEventListener('touchstart', e => {
         let posY = scaleByPixelRatio(touches[0].pageY);
         //updatePointerDownData(pointers[i + 1], touches[i].identifier, posX, posY);
         updatePointerDownData(pointers[0], touches[0].identifier, posX, posY);
+
   //  }
 });
 function fract(tt) { return tt - Math.floor(tt); }
@@ -446,15 +449,12 @@ canvas.addEventListener('touchmove', e => {
         let posX = scaleByPixelRatio(touches[0].pageX);
         let posY = scaleByPixelRatio(touches[0].pageY);
         updatePointerMoveData(pointer, posX, posY);
-          test = 1;
-        if(fract(PosX*5.)>0.9){
-          navigator.vibrate(10);
-        }
   //  }
 }, false);
 
 window.addEventListener('touchend', e => {
   navigator.vibrate(50);
+
     const touches = e.changedTouches;
   //  for (let i = 0; i < touches.length; i++)
   //  {
