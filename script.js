@@ -423,10 +423,11 @@ test = 1;
 window.addEventListener('mouseup', () => {
 
     updatePointerUpData(pointers[0]);
+    test = 0;
 });
 
 canvas.addEventListener('touchstart', e => {
-  navigator.vibrate(20);
+  navigator.vibrate(50);
     e.preventDefault();
     const touches = e.targetTouches;
     while (touches.length >= pointers.length)
@@ -452,11 +453,12 @@ canvas.addEventListener('touchmove', e => {
         let posY = scaleByPixelRatio(touches[0].pageY);
         updatePointerMoveData(pointer, posX, posY);
         test = 1;
+        navigator.vibrate(fract(posX*5.));
   //  }
 }, false);
 
 window.addEventListener('touchend', e => {
-  navigator.vibrate(20);
+  navigator.vibrate(50);
 
     const touches = e.changedTouches;
   //  for (let i = 0; i < touches.length; i++)
@@ -464,6 +466,7 @@ window.addEventListener('touchend', e => {
         let pointer = pointers.find(p => p.id == touches[0].identifier);
         //if (pointer == null) continue;
         updatePointerUpData(pointer);
+          test = 0;
   //  }
 });
 
