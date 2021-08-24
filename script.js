@@ -390,17 +390,20 @@ function drawDisplay (target) {
   gl.uniform1f(displayMaterial.uniforms.time, performance.now() / 1000);
   gl.uniform2f(displayMaterial.uniforms.resolution, canvas.width , canvas.height);
   gl.uniform2f(displayMaterial.uniforms.mouse, pointers[0].texcoordX, pointers[0].texcoordY);
+
   gl.uniform1f(displayMaterial.uniforms.test, test);
     blit(target);
 }
 
 var test = 0;
+function fract(tt) { return tt - Math.floor(tt); }
+
 canvas.addEventListener('mousedown', e => {
 
     let posX = scaleByPixelRatio(e.offsetX);
     let posY = scaleByPixelRatio(e.offsetY);
     //let pointer = pointers.find(p => p.id == -1);
-  test = 1;
+
     let pointer = pointers[0];
     if (pointer == null)
         pointer = new pointerPrototype();
@@ -414,17 +417,16 @@ canvas.addEventListener('mousemove', e => {
     let posX = scaleByPixelRatio(e.offsetX);
     let posY = scaleByPixelRatio(e.offsetY);
     updatePointerMoveData(pointer, posX, posY);
-
+test = 1;
 });
 
 window.addEventListener('mouseup', () => {
- //navigator.vibrate(50);
-  test = 0;
+
     updatePointerUpData(pointers[0]);
 });
 
 canvas.addEventListener('touchstart', e => {
-  navigator.vibrate(50);
+  navigator.vibrate(20);
     e.preventDefault();
     const touches = e.targetTouches;
     while (touches.length >= pointers.length)
@@ -437,7 +439,7 @@ canvas.addEventListener('touchstart', e => {
 
   //  }
 });
-function fract(tt) { return tt - Math.floor(tt); }
+
 canvas.addEventListener('touchmove', e => {
   //navigator.vibrate(10);
     e.preventDefault();
@@ -449,13 +451,13 @@ canvas.addEventListener('touchmove', e => {
         let posX = scaleByPixelRatio(touches[0].pageX);
         let posY = scaleByPixelRatio(touches[0].pageY);
         updatePointerMoveData(pointer, posX, posY);
-          test = 1;
+        test = 1;
   //  }
 }, false);
 
 window.addEventListener('touchend', e => {
-  navigator.vibrate(50);
-  test = 1;
+  navigator.vibrate(20);
+
     const touches = e.changedTouches;
   //  for (let i = 0; i < touches.length; i++)
   //  {
