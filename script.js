@@ -453,7 +453,7 @@ canvas.addEventListener('touchmove', e => {
         let posY = scaleByPixelRatio(touches[0].pageY);
         updatePointerMoveData(pointer, posX, posY);
         test = 1;
-        navigator.vibrate(fract(posX*5.));
+        navigator.vibrate(step(0.5,fract(posX*5.))*50.);
   //  }
 }, false);
 
