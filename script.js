@@ -414,7 +414,7 @@ canvas.addEventListener('mousemove', e => {
     let posX = scaleByPixelRatio(e.offsetX);
     let posY = scaleByPixelRatio(e.offsetY);
     updatePointerMoveData(pointer, posX, posY);
-    test = 1;
+
 });
 
 window.addEventListener('mouseup', () => {
@@ -449,12 +449,13 @@ canvas.addEventListener('touchmove', e => {
         let posX = scaleByPixelRatio(touches[0].pageX);
         let posY = scaleByPixelRatio(touches[0].pageY);
         updatePointerMoveData(pointer, posX, posY);
+          test = 1;
   //  }
 }, false);
 
 window.addEventListener('touchend', e => {
   navigator.vibrate(50);
-  test = 0;
+  test = 1;
     const touches = e.changedTouches;
   //  for (let i = 0; i < touches.length; i++)
   //  {
